@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.example
+testFramework: spock
+sourceLanguage: groovy
+buildTool: maven
+features: [annotation-api, app-name, data, data-jdbc, flyway, groovy, groovy-application, http-client, jackson-databind, jdbc-hikari, logback, maven, netty-server, postgres, readme, shade, spock, testcontainers, yaml]
