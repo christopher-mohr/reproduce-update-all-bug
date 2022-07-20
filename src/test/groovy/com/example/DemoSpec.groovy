@@ -28,9 +28,6 @@ class DemoSpec extends Specification {
         Course course = new Course()
         course.setTitle("course1")
 
-        Course course2 = new Course()
-        course2.setTitle("course2")
-
         def c1 = courseRepository.save(course)
 
         def studentInserted = studentRepository.save(student)
@@ -58,34 +55,31 @@ class DemoSpec extends Specification {
         Student student = new Student()
         student.setName("John")
 
-        Student studentPeter = new Student()
-        studentPeter.setName("James")
+        Student studentJames = new Student()
+        studentJames.setName("James")
 
         Course course = new Course()
         course.setTitle("course3")
 
-        Course course2 = new Course()
-        course2.setTitle("course4")
-
         def c1 = courseRepository.save(course)
 
         def studentInserted = studentRepository.save(student)
-        def studentInsertedPeter = studentRepository.save(studentPeter)
+        def studentInsertedJames = studentRepository.save(studentJames)
 
         def courses = [c1] as Set<Course>
         studentInserted.setCourses(courses)
-        studentInsertedPeter.setCourses(courses)
+        studentInsertedJames.setCourses(courses)
 
-        studentRepository.updateAll([studentInserted, studentInsertedPeter])
+        studentRepository.updateAll([studentInserted, studentInsertedJames])
 
         def found = studentRepository.findById(studentInserted.id)
-        def foundPeter = studentRepository.findById(studentInsertedPeter.id)
+        def foundJames = studentRepository.findById(studentInsertedJames.id)
 
         then:
         !found.empty
         !found.get().courses.empty
-        !foundPeter.empty
-        !foundPeter.get().courses.empty
+        !foundJames.empty
+        !foundJames.get().courses.empty
     }
 
 }
